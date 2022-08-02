@@ -21,6 +21,8 @@ namespace App
         public delegate void CustomNameOperations(List<Person> list); // Declaring a delegate
 
 
+
+
         static void Main(string[] args)
         {
 
@@ -153,7 +155,21 @@ namespace App
                 Console.WriteLine(item);
             }
 
+            // Action & Func Delegates
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("\n------- Action Delegate Work -------");
 
+            Action<int, int> actionDelegate = Sum;
+            actionDelegate += Multiply;
+            actionDelegate += Divide;
+            actionDelegate += Subtract;
+
+            actionDelegate(100, 20);
+
+            Console.WriteLine("\n------- Func Delegate Work -------");
+            Func<List<Person>, double> funcDelegate = AverageAge;
+
+            Console.WriteLine("Average Person's Age: " + funcDelegate(list) + " years old");
 
 
 
@@ -203,6 +219,36 @@ namespace App
                     Console.WriteLine(item.FirstName + " " + item.LastName);
             }
         }
+        // Action Delegate Work Example
+        public static void Sum(int x, int y)
+        {
+            Console.WriteLine($"{x} + {y} = {x + y}");
+        }
+        public static void Multiply(int x, int y)
+        {
+            Console.WriteLine($"{x} * {y} = {x * y}");
+        }
+        public static void Divide(int x, int y)
+        {
+            if (y == 0) throw new ArithmeticException("Nope");
+            Console.WriteLine($"{x} : {y} = {x / y}");
+        }
+        public static void Subtract(int x, int y)
+        {
+            Console.WriteLine($"{x} - {y} = {x - y}");
+        }
+
+        // Func Deleagte Work Example
+        public static double AverageAge (List<Person> list)
+        {
+            double tmp = 0;
+            foreach (var item in list)
+            {
+                tmp += item.Age;
+            }
+            return Math.Round(tmp / list.Count, 2);
+        }
+
     }
 
 
