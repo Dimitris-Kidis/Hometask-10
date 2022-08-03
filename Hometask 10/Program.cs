@@ -134,7 +134,11 @@ namespace App
             var filteredListFluentStyle1 = list
                                 .Where(x => x.ID > 5 && x.Age > 20)
                                 .OrderBy(x => x.Age)
-                                .Select(x => x.ID + " " + x.FirstName + " " + x.LastName + ", " + x.Age);
+                                .Select(x => new { Name = x.LastName});
+            var type5 = new
+            {
+                Name = "John"
+            };
             
             foreach (var item in filteredListFluentStyle1)
             {
